@@ -1,0 +1,69 @@
+\documentclass{article}
+% 中文非常慢，慎用。
+% \usepackage[UTF8]{ctex}
+
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage[paperwidth=8.5cm, paperheight=11.4cm, margin=0cm]{geometry}
+
+\title{LaTeX Toturial}
+\author{Qi Xiaofeng}
+\date{\today}
+
+\begin{document}
+
+\noindent Example of ordered list:
+\begin{enumerate}
+\item Here we go.
+\item Nothing special.
+\end{enumerate}
+Example of simple list:
+\begin{itemize}
+\item One.
+\item Two.
+\end{itemize}
+Example of table{\tiny(Fixed length depend on \textbackslash{usepackage\{array\}})}:\\
+\noindent\begin{tabular}{|m{2cm}|m{2cm}|}
+\hline
+Abc & God \\
+\hline
+\hline
+Def & Damn \\
+\hline
+Ghijk & Table \\
+\hline
+\end{tabular}
+\\\\
+
+\noindent \textit{Usage of \textbackslash{hfill}} \hfill \textbf{a} \hfill \underline{Z}
+\\
+
+\noindent Usage of \textbackslash{vfill}. It created \emph{large vertical} empty.
+\vfill
+\clearpage
+
+\noindent\begin{tabular}{m{0.3cm} m{7.4cm}}
+     & Function \\\hline
+\#   & Macro parameter \\\hline
+\$   & Math mode \\\hline
+\%   & Comment \\\hline
+\^{} & Superscript(in math mode). Could print with \textbackslash{textasciicircum} \\\hline
+\&   & Seperate column entries in tables \\\hline
+\_   & Subscript(in math mode) \\\hline
+\{\} & Processing block \\\hline
+\~{} & Unbreakable space, use it whenever you want to leave a space which is unbreakable\\\hline
+\textbackslash & Starting commands, which extend until the first non-alphanumerical character
+\end{tabular}
+\\\\
+
+\noindent Example of formula list:
+\begin{flalign}
+\nonumber&A~simple~line~without~number\\
+&\int^{a}_{b}{f(x)}=F(x)&&\\
+\nonumber&\\
+&\lim_{x \rightarrow \infty}{\frac{f(x)}{g(x)}}=0&&
+\end{flalign}
+
+$$\oint \lim_{x \rightarrow \infty}=unknown$$
+
+\end{document}

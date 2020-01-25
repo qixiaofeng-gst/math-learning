@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[openany]{book}
 % 中文非常慢，慎用。
 % \usepackage[UTF8]{ctex}
 
@@ -6,13 +6,254 @@
 \usepackage{amsmath}
 \usepackage[paperwidth=8.5cm, paperheight=11.4cm, margin=0cm]{geometry}
 
+\usepackage{hyperref}
+\hypersetup{bookmarks=true}
+
+% Make chapter header use less space.
+\makeatletter
+\def\@makechapterhead#1{%
+% \vspace*{1\p@}%
+  {%\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \small\bfseries\space\thechapter.\space
+      \fi
+    \fi
+%   \interlinepenalty\@M
+    \small \bfseries #1\par\nobreak
+%   \vskip 1\p@
+  }}
+\makeatother
+
 \title{LaTeX Toturial}
 \author{Qi Xiaofeng}
 \date{\today}
+\setlength{\parindent}{0cm}
 
-\begin{document}
+\begin{document} %%%%%%%
 
-\noindent Example of ordered list:
+\chapter{Document structure}
+By default the new chapters are opening on the right hand page. Use \textit{\scriptsize\textbackslash{}documentclass[openany]\{book\}} to cancel the default behavior.\\
+Use {\footnotesize\textit{\textbackslash{noindent}}} to cancel paragraph indent without\\ {\scriptsize\textit{\textbackslash{setlength\{\textbackslash{parindent}\}\{0cm\}}}} at preamble.\\
+
+Document type list:
+\begin{center}
+\begin{tabular}{|l|m{6cm}|} \hline
+\textbf{Type} & \textbf{Description} \\\hline
+article & For short documents and journal articles. Is the most commonly used. \\\hline
+report & For longer documents and dissertations. \\\hline
+book & Useful to write books. \\\hline
+letter & For letters. \\\hline
+slides & For slides, rarely used. \\\hline
+beamer & Slides in the Beamer class format. See the beamer documentation for a better description. \\\hline
+minimal & Simplest type without any dependency. \\\hline
+\end{tabular}
+\end{center}
+
+\textit{Usage of \textbackslash{hfill}} \hfill \textbf{a} \hfill \underline{Z}\\
+Usage of \textbackslash{vfill}. It created \emph{large vertical} empty.
+\vfill
+Last line of current page.%%%%%%%
+
+\chapter{Spaces in math mode}
+\begin{center}
+\begin{tabular}{l|m{6cm}}
+\textbf{Code} & \textbf{Value} \\\hline
+\textbackslash{quad} & space equal to the current font size (= 18 mu) \\\hline
+\textbackslash{,} & 3/18 of \textbackslash{quad} (= 3 mu) \\\hline
+\textbackslash{:} & 4/18 of \textbackslash{quad} (= 4 mu) \\\hline
+\textbackslash{;} & 5/18 of \textbackslash{quad} (= 5 mu) \\\hline
+\textbackslash{!} & -3/18 of \textbackslash{quad} (= -3 mu) \\\hline
+\textbackslash\ (space) & equivalent of space in normal text \\\hline
+\textbackslash{qquad} & tiwce of \textbackslash{quad} (= 36 mu) \\
+\end{tabular}
+\end{center}
+Inline formula looks different to display one. For example $\lim_{x \rightarrow \infty}(\frac{1}{x})$, in display mode:
+$$\lim_{x \rightarrow \infty}(\frac{1}{x})$$
+And $\sum_{i=0}^{n} n^2$, in display mode:
+$$\sum_{i=0}^{n} n^2$$
+
+%%%%%%%
+\chapter{Examples in math mode}
+\begin{equation}
+\begin{split}
+A &= \frac{\pi r^2}{2}\\
+  &= \frac{1}{2}\pi r^2
+\end{split}
+\end{equation}
+\begin{equation}
+e^{\pi i} + 1 = 0
+\end{equation}
+\begin{multline*}
+p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
+- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline*}
+\begin{align*}
+x&=y           &  w &=z              &  a&=b+c\\
+2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b
+\end{align*}
+\begin{flalign}
+&hello&&\\
+\nonumber&world\\
+&hello~world
+\end{flalign}
+\begin{gather*}
+w=a+b+c\\
+x=i+j+k+m+n
+\end{gather*}
+$$y = \int_a^b e^x dx$$
+
+%%%%%%%
+\chapter{Integrals, sums and limits}
+\begin{flalign}\nonumber
+&\iint_V \mu(u,v) \,du\,dv &&\\\nonumber
+&\iiint_V \mu(u,v,w) \,du\,dv\,dw \\\nonumber
+&\iiiint_V \mu(t,u,v,w) \,dt\,du\,dv\,dw \\\nonumber
+&\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k \\\nonumber
+&\\\hline\nonumber
+&\\\nonumber
+&\oint_V f(s) \,ds \\\nonumber
+&\\\hline\nonumber
+&\\\nonumber
+&\sum_{n=1}^{\infty} 2^{-n} = 1 \\\nonumber
+&\prod_{i=a}^{b} f(i) \\\nonumber
+&\lim_{x \rightarrow 0}(x + 1)^{\frac{1}{x}}=e
+\end{flalign}
+
+%%%%%%%
+\chapter{Greek letters and math symbols}
+Greek letters:\\
+$\alpha A \quad
+\beta B	 \quad
+\gamma \Gamma	\quad
+\delta \Delta	\quad
+\epsilon \varepsilon \quad
+\zeta Z	 \quad
+\eta H \quad
+\theta \vartheta \Theta \\
+%
+\iota I	 \quad
+\kappa K \quad
+\lambda \Lambda \quad
+\mu M \quad
+\nu N \quad
+\xi\Xi \quad
+o O \quad
+\pi \Pi \\
+%
+\rho\varrho P \quad
+\sigma \Sigma \quad
+\tau T \quad
+\upsilon \Upsilon \quad
+\phi \varphi \Phi \quad
+\chi X \quad
+\psi \Psi \quad
+\omega \Omega$
+\\\\
+Arrows\\
+$
+\leftarrow\;
+\rightarrow\;
+\leftrightarrow\;
+\uparrow\;
+\Uparrow\;
+\Leftrightarrow\;
+\mapsto	\;
+\nearrow\;
+\swarrow\;
+\leftharpoonup\;
+\leftharpoondown \\
+%
+\Leftarrow\;
+\Rightarrow\;
+\rightleftharpoons\;
+\downarrow\;
+\Downarrow\;
+\Updownarrow\;
+\longmapsto\;
+\searrow\;
+\nwarrow\;
+\rightharpoonup\;
+\rightharpoondown
+$
+\\\\
+Miscellaneous:\\
+$
+\infty\;
+\forall\;
+\exists	\;
+\Re\;
+\Im\;
+\nabla\;
+\partial\;
+%\nexists\;
+\emptyset\;
+%\varnothing\;
+\wp\;
+%\complement\;
+\neg\;
+\cdots\;
+%\square\;
+\surd\;
+%\blacksquare\;
+\triangle
+$
+\\\\
+Binary operators:\\
+$
+\times\;
+\div\;
+\cap\;
+\cup\;
+\neq\;
+\leq\;
+\geq\;
+\in\;
+\perp\;
+\notin\;
+\subset	\;
+\simeq\;
+\approx	\;
+\wedge\;
+\vee\;
+\oplus\;
+\otimes	\;
+%\Box\;
+%\boxtimes\;
+\equiv\;
+\cong
+$
+
+
+%%%%%%%
+\chapter{Special symbols in LaTeX}
+\begin{center}
+\begin{tabular}{|m{0.3cm}|m{7cm}|} \hline
+     & Function \\\hline
+\#   & Macro parameter \\\hline
+\$   & Math mode \\\hline
+\%   & Comment \\\hline
+\^{} & Superscript(in math mode) \\\hline
+\&   & Seperate column entries in tables \\\hline
+\_   & Subscript(in math mode) \\\hline
+\{\} & Processing block \\\hline
+\~{} & Unbreakable space, use it whenever you want to leave a space which is unbreakable\\\hline
+\textbackslash & Starting commands, which extend until the first non-alphanumerical character\\\hline
+\end{tabular}
+\end{center}
+
+Example of formula list:
+\begin{flalign}
+\nonumber&A~simple~line~without~number\\
+&\int^{a}_{b}{f(x)}=F(x)&&\\
+\nonumber&\\
+&\lim_{x \rightarrow \infty}{\frac{f(x)}{g(x)}}=0&&
+\end{flalign}
+
+$$\oint \lim_{x \rightarrow \infty}=unknown$$
+\clearpage %%%%%%%
+
+Example of ordered list:
 \begin{enumerate}
 \item Here we go.
 \item Nothing special.
@@ -23,47 +264,42 @@ Example of simple list:
 \item Two.
 \end{itemize}
 Example of table{\tiny(Fixed length depend on \textbackslash{usepackage\{array\}})}:\\
-\noindent\begin{tabular}{|m{2cm}|m{2cm}|}
+\begin{center}
+\begin{tabular}{m{2cm} m{2cm}|l}
 \hline
-Abc & God \\
+Abc & God & Hoo \\
 \hline
 \hline
-Def & Damn \\
+Def & Damn & Foo \\
 \hline
-Ghijk & Table \\
+Ghijk & Table & Bar \\
 \hline
 \end{tabular}
-\\\\
+\end{center}
+\clearpage %%%%%%%
 
-\noindent \textit{Usage of \textbackslash{hfill}} \hfill \textbf{a} \hfill \underline{Z}
-\\
-
-\noindent Usage of \textbackslash{vfill}. It created \emph{large vertical} empty.
-\vfill
-\clearpage
-
-\noindent\begin{tabular}{m{0.3cm} m{7.4cm}}
-     & Function \\\hline
-\#   & Macro parameter \\\hline
-\$   & Math mode \\\hline
-\%   & Comment \\\hline
-\^{} & Superscript(in math mode). Could print with \textbackslash{textasciicircum} \\\hline
-\&   & Seperate column entries in tables \\\hline
-\_   & Subscript(in math mode) \\\hline
-\{\} & Processing block \\\hline
-\~{} & Unbreakable space, use it whenever you want to leave a space which is unbreakable\\\hline
-\textbackslash & Starting commands, which extend until the first non-alphanumerical character
+\chapter{The 7 units in LaTeX}
+\begin{center}
+\begin{tabular}{l|m{6cm}}
+\textbf{Abbr.} & \textbf{Value} \\\hline
+pt & a point is approximately 1/72.27 inch, that means about 0.0138 inch or 0.3515 mm (exactly point is defined as 1/864 of American printer’s foot that is 249/250 of English foot) \\\hline
+mm & a millimeter \\\hline
+cm & a centimeter \\\hline
+in & inch \\\hline
+ex & roughly the height of an 'x' (lowercase) in the current font (it depends on the font used) \\\hline
+em & roughly the width of an 'M' (uppercase) in the current font (it depends on the font used) \\\hline
+mu & math unit equal to 1/18 em, where em is taken from the math symbols family \\
 \end{tabular}
-\\\\
+\end{center}
+\clearpage %%%%%%%
 
-\noindent Example of formula list:
-\begin{flalign}
-\nonumber&A~simple~line~without~number\\
-&\int^{a}_{b}{f(x)}=F(x)&&\\
-\nonumber&\\
-&\lim_{x \rightarrow \infty}{\frac{f(x)}{g(x)}}=0&&
-\end{flalign}
-
-$$\oint \lim_{x \rightarrow \infty}=unknown$$
+Template for single page:
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{a} & \textbf{b} \\\hline
+c & d \\
+\end{tabular}
+\end{center}
+\clearpage %%%%%%%
 
 \end{document}

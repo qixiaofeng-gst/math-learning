@@ -36,6 +36,7 @@
 By default the new chapters are opening on the right hand page. Use \textit{\scriptsize\textbackslash{}documentclass[openany]\{book\}} to cancel the default behavior.\\
 Use {\footnotesize\textit{\textbackslash{noindent}}} to cancel paragraph indent without\\ {\scriptsize\textit{\textbackslash{setlength\{\textbackslash{parindent}\}\{0cm\}}}} at preamble.\\
 
+{\scriptsize
 Document type list:
 \begin{center}
 \begin{tabular}{|l|m{6cm}|} \hline
@@ -49,7 +50,12 @@ beamer & Slides in the Beamer class format. See the beamer documentation for a b
 minimal & Simplest type without any dependency. \\\hline
 \end{tabular}
 \end{center}
+}
 
+{\tiny
+Use \emph{\textbackslash{input}\{filename\}} to directly insert tex file.
+Use \emph{\textbackslash{include}\{filename\}} to use tex file as seperate pages.\\
+}
 \textit{Usage of \textbackslash{hfill}} \hfill \textbf{a} \hfill \underline{Z}\\
 Usage of \textbackslash{vfill}. It created \emph{large vertical} empty.
 \vfill

@@ -1,0 +1,36 @@
+% Only used in preamble.
+\setlength{\parindent}{0cm}
+
+\usepackage{amsmath}
+\usepackage[paperwidth=8.5cm, paperheight=11.4cm, margin=0cm]{geometry}
+
+\usepackage{hyperref}
+\hypersetup{bookmarks=true}
+
+\def\qxffirst def{Yes 'abcdef' is gone: }
+\def\qxfmacro abc{\qxffirst}
+\def\qxftest#1x#2{God like these: #1 and #2\\}
+\def\qxftestat(#1,#2,#3){Here we go: #1, #2, #3\\}
+
+\makeatletter
+\def\section{
+  \@startsection
+    {section}{1}{0cm}{0cm}{0pt}
+    {\normalfont\small\bfseries}
+}
+\def\@makechapterhead#1{{
+  \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        \small\bfseries \thechapter.\space
+      \fi
+  \fi
+  \small \bfseries #1\par\nobreak
+  \vskip 0\z@
+}}
+\makeatother
+
+\newcommand\C[1]{\textcircled{\footnotesize #1}}
+\DeclareMathOperator{\D}{\mathnormal{\frac{d}{dx}}}
+\newcommand\E{\nonumber}% Empty line(without number)
+\DeclareMathOperator{\arccot}{arccot}
+\newcommand\I[1]{\int #1 \; dx}

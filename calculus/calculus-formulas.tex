@@ -1,0 +1,111 @@
+\documentclass[fleqn]{minimal}
+
+\input{../qxfkindle}
+
+\begin{document}
+
+\chapter{Limit (P10)}
+
+Value of \(e\):
+\begin{equation}\tag{$e$}\label{value.e}
+\begin{split}
+e &= \lim_{x \rightarrow 0}(x + 1)^{\frac{1}{x}}\\
+  &= \lim_{\varphi(x)\rightarrow0}(1 + \varphi(x))^{\frac{1}{\varphi(x)}}\\
+  &= \lim_{n \rightarrow \infty}(1 + \frac{1}{n})^n\\
+  &= \sum_{n=0}^{\infty}\frac{1}{n!}
+\end{split}
+\end{equation}
+
+Useful limit:
+\Creset
+\begin{equation}
+\C~\lim_{n\rightarrow\infty}\sqrt[n]n = 1;\;
+\C~\lim_{n\rightarrow\infty}\sqrt[n]a = 1,\,(a > 0)
+\end{equation}
+
+Equivalent Infinitesimal ($x \rightarrow 0$)
+\begin{align}
+\E x^m + x^n &\sim x^m,\,(m < n)\\
+   (1 + x)^a - 1 &\sim ax\\
+\E e^x - 1 &\sim x\\
+   a^x - 1 &\sim x\ln a,\,(a > 0, a \neq 1)\\
+   \ln(x + 1) &\sim x \\
+   \sin,\tan,arc &\sim x\\
+   1 - \cos x &\sim \frac{1}{2}x^2
+\end{align}
+
+\chapter{Derivative Formula (P38)}
+{\small
+\begin{align}
+  &\D C = 0;\quad
+   \D x^n=nx^{n-1}&&\\
+  &\D e^x = e^x;\quad
+   \D a^x = a^x\ln a\\
+  &\D \ln x = \frac{1}{x};\quad
+   \D \log_a x = \frac{1}{x\ln{a}}\\
+\E&\D \sin x = \cos x;\quad
+   \D \cos x = -\sin x\\
+\E&\D \tan x = \sec^2x;\quad
+   \D \cot x = -\csc^2x\\
+  &\D \sec x = \sec x \tan x;\quad
+   \D \csc x = -\csc x \cot x\\
+\E&\D \arcsin x = \frac{1}{\sqrt{1 - x^2}};\quad
+   \D \arccos x = -\frac{1}{\sqrt{1 - x^2}}\\
+  &\D \arctan x = \frac{1}{1 + x^2};\quad
+   \D \arccot x = -\frac{1}{1 + x^2}
+\end{align}
+}
+
+Test hyperlink to \eqref{value.e}
+
+\chapter{Indefinite Integral Formula (P86)}
+{\small
+\begin{align*}
+&\I{x^n} = \frac{1}{n + 1}x^{n + 1} + C,\,(n \neq -1)&&\\
+&\I{\frac{1}{x}} = \ln|x| + C\N\\
+&\I{e^x} = e^x + C;\;
+ \I{a^x} = \frac{1}{\ln a}a^x + C\N\\
+&\I{\sin x} = -\cos x + C;\;
+ \I{\cos x} = \sin x + C\\
+&\I{\tan x} = -\ln|\cos x| + C;\;
+ \I{\cot x} = \ln|\sin x| + C\\
+&\I{\sec x} = \ln|\sec x + \tan x| + C\\
+&\I{\csc x} = \ln|\csc x - \cot x| + C\\
+&\I{\sec^2 x} = \tan x + C;\;\I{\csc^2 x} = -\cot x + C \N\\
+&\I{\frac{1}{a^2 + x^2}} = \frac{1}{a} \arctan x + C\\
+&\I{\frac{1}{a^2 - x^2}} = \frac{1}{2a}\ln|\frac{a + x}{a - x}| + C\\
+&\I{\frac{1}{\sqrt{a + x^2}}} = \ln|x + \sqrt{a + x^2}| + C\\
+&\I{\frac{1}{\sqrt{a^2 - x^2}}} = \arcsin x + C\N
+\end{align*}
+}
+
+\chapter{Determinant}
+\begin{equation}
+\begin{split}
+|A| &= \begin{vmatrix}
+       a_{11} & a_{12} & \cdots & a_{1n}\\
+       a_{21} & a_{22} & \cdots & a_{2n}\\
+       \vdots & \vdots & ~      & \vdots\\
+       a_{n1} & a_{n2} & \cdots & a_{nn}
+       \end{vmatrix}\\
+    &= \sum_{j_1 j_2 \cdots j_n} (-1)^{\tau{(j_1 j_2 \cdots j_n)}} a_{1j_1}a_{2j_2}\cdots a_{nj_n}
+\end{split}
+\end{equation}
+
+\Creset
+\begin{align*}
+&\C~row/column~exchange~update~sign\\
+&\C~common~divisor~of~row/column~can~be~extracted\\
+&\C~could~be~splitted~by~row/column\\
+&\C~row/column~multiply+plus~equivalent\\
+&\C~|A|^T=|A|\N
+\end{align*}
+
+\chapter{About Number $e$}
+\Creset
+\begin{align*}
+\C~&e^x = \sum_{n=0}^{\infty}\frac{x^n}{n!}\quad(Taylor~series)\\
+\C~&e^{ix} = \cos{x} + i\sin{x} \N
+\end{align*}
+
+\end{document}

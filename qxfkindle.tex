@@ -1,0 +1,64 @@
+% Only used in preamble with document class minimal.
+
+\setlength\tabcolsep{0.1cm}
+\setlength\parskip{8pt}
+\setlength\parindent{0cm}
+
+\usepackage{
+  amsmath,
+  hyperref,
+}
+\usepackage[
+  paperwidth=8.5cm,
+  paperheight=11.4cm,
+  margin=0cm,
+]{geometry}
+
+\hypersetup{
+  bookmarks=true,
+}
+
+\def\qxffirst def{Yes 'abcdef' is gone: }
+\def\qxfmacro abc{\qxffirst}
+\def\qxftest#1x#2{God like these: #1 and #2\\}
+\def\qxftestat(#1,#2,#3){Here we go: #1, #2, #3\\}
+
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{2pt}
+  \setlength\belowdisplayskip{2pt}
+  \setlength\abovedisplayshortskip{2pt}
+  \setlength\belowdisplayshortskip{2pt}
+}
+\makeatother
+
+\newcounter{GroupEquationInner}
+\newcommand\C{\addtocounter{GroupEquationInner}{
+  1
+}\textcircled{\small\arabic{GroupEquationInner}}}
+\newcommand\Creset{\setcounter{GroupEquationInner}{0}}
+\newenvironment{GroupEquation}{
+  \begin{equation}
+  \begin{aligned}
+}{
+  \end{aligned}
+  \end{equation}
+  \let\C=\relax
+}
+
+\newcounter{chapter}
+\setcounter{chapter}{0}
+\numberwithin{equation}{chapter}% Provided by amsmath.
+\newcommand\chapter[1]{
+  \clearpage
+  \addtocounter{chapter}{1}
+  \setcounter{equation}{0}
+  \pdfbookmark{\arabic{chapter}.~#1}{id:\arabic{chapter}}
+  \textbf{\arabic{chapter}.~#1}
+}
+\newcommand\E{\nonumber}
+\newcommand\small{\fontsize{7pt}{8pt}\selectfont}
+\DeclareMathOperator{\D}{\mathnormal{\frac{d}{dx}}}
+\DeclareMathOperator{\arccot}{arccot}
+\newcommand\I[1]{\int #1 \; dx}
+\newcommand\N{\stepcounter{equation}\tag{\theequation}}

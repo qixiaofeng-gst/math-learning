@@ -1,17 +1,36 @@
-\documentclass[openany]{book}
+\documentclass[fleqn]{minimal}
 % 中文非常慢，慎用。
 % \usepackage[UTF8]{ctex}
 
-\usepackage{array}
-\usepackage{amsmath}
+\usepackage{
+  amsmath,
+  hyperref,
+}
 \usepackage[
   paperwidth=8.5cm,
   paperheight=11.4cm,
   margin=0cm,
 ]{geometry}
 
-\usepackage{hyperref}
-\hypersetup{bookmarks=true}
+\hypersetup{
+  bookmarks=true,
+}
+
+\newcounter{CircledNumberList}
+\newenvironment{CircledNumberList}{
+  \setcounter{CircledNumberList}{0}
+  \newcommand\C{\addtocounter{CircledNumberList}{
+    1
+  }\textcircled{\small\arabic{CircledNumberList}}}
+  \begin{list}{\C{}~}{}
+}{
+  \end{list}
+  \let\C=\relax% Set the \C to undefined
+}
+
+\newcommand\B{\textbackslash}
+\newcommand\chapter[1]{\clearpage\pdfbookmark{#1}{id:#1}\textbf{#1}\\}
+\newcommand\small{\fontsize{7pt}{7pt}\selectfont}
 
 % Make chapter header use less space.
 \makeatletter
@@ -29,58 +48,63 @@
   }}
 \makeatother
 
-\title{LaTeX Toturial}
-\author{Qi Xiaofeng}
-\date{\today}
-\setlength{\parindent}{0cm}
+\setlength\parskip{0.25cm}
+\setlength\tabcolsep{0.1cm}
+\setlength\parindent{0cm}
 
 \begin{document} %%%%%%%
-
-Read about other form of \$\$ and \$\$..\$\$.\\
-Read about length.
+Use {\small\B[\B]} instead of \$\$ and {\small\B(\B)} instead of \$\$..\$\$.
+\[ hello\overset{pretty}{\underset{much}{=}}world \]
 
 Below lines can output things as is:\\
-\textit{
-\textbackslash{begin\{verbatim\}}\\
+\textit{\small
+\B{begin\{verbatim\}}\\
 \hspace*{2ex}Anything you want to show\\
-\textbackslash{end\{verbatim\}}
-}\\
-Unfortunately the \emph{verbatim} environment could not be used recursively.\\
-\\
-Belows created a \emph{tabular} environment column type which can hide the corresponding column:
-{\scriptsize
+\B{end\{verbatim\}}
+}
+
+\par
+There is an \emph{verbatim} inline version that is \emph{\B{verb}}.
+For example: \verb|\message{\showthe\baselineskip}|.
+\par
+Unfortunately the \emph{verbatim} environment could not be used recursively.
+\par
+Belows create a \emph{tabular} environment column type that can hide the corresponding column:
+\par
+{\small
 \begin{verbatim}
 \usepackage{array}
 \newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
 \end{verbatim}
 }
+\par
 Belows could allow multipage table usage.
-{\scriptsize
+{\small
 \begin{verbatim}
+% In preamble
 \usepackage{longtable}
 
 % Use
-
 \begin{longtable}
   ...
 \end{longtable}
 
 % instead of
-
 \begin{tabular}
   ...
 \end{tabular}
 \end{verbatim}
 }
+Do not use \emph{book} class to generate PDF to be used in Kindle, or the words in PDF will not be regconized by Kindle.
 
 \chapter{Document structure}
-By default the new chapters are opening on the right hand page. Use \textit{\scriptsize\textbackslash{}documentclass[openany]\{book\}} to cancel the default behavior.\\
-Use {\footnotesize\textit{\textbackslash{noindent}}} to cancel paragraph indent without\\ {\scriptsize\textit{\textbackslash{setlength\{\textbackslash{parindent}\}\{0cm\}}}} at preamble.\\
+By default the new chapters are opening on the right hand page. Use \textit{\b documentclass[openany]\{book\}} to cancel the default behavior.\\
+Use {\textit{\B{noindent}}} to cancel paragraph indent without\\ \textit{\B{setlength\{\B{parindent}\}\{0cm\}}} at preamble.\\
 
-{\scriptsize
+{
 Document type list:
 \begin{center}
-\begin{tabular}{|l|m{6cm}|} \hline
+\begin{tabular}{|l|p{6cm}|} \hline
 \textbf{Type} & \textbf{Description} \\\hline
 article & For short documents and journal articles. Is the most commonly used. \\\hline
 report & For longer documents and dissertations. \\\hline
@@ -93,32 +117,32 @@ minimal & Simplest type without any dependency. \\\hline
 \end{center}
 }
 
-{\tiny
-Use \emph{\textbackslash{input}\{filename\}} to directly insert tex file.
-Use \emph{\textbackslash{include}\{filename\}} to use tex file as seperate pages.\\
+{
+Use \emph{\B{input}\{filename\}} to directly insert tex file.
+Use \emph{\B{include}\{filename\}} to use tex file as seperate pages.\\
 }
-\textit{Usage of \textbackslash{hfill}} \hfill \textbf{a} \hfill \underline{Z}\\
-Usage of \textbackslash{vfill}. It created \emph{large vertical} empty.
+\textit{Usage of \B{hfill}} \hfill \textbf{a} \hfill \underline{Z}\\
+Usage of \B{vfill}. It created \emph{large vertical} empty.
 \vfill
-Last line of current page.%%%%%%%
+Last line of current page.
 
 \chapter{Spaces in math mode}
 \begin{center}
-\begin{tabular}{l|m{6cm}}
+\begin{tabular}{l|p{6cm}}
 \textbf{Code} & \textbf{Value} \\\hline
-\textbackslash{quad} & space equal to the current font size (= 18 mu) \\\hline
-\textbackslash{,} & 3/18 of \textbackslash{quad} (= 3 mu) \\\hline
-\textbackslash{:} & 4/18 of \textbackslash{quad} (= 4 mu) \\\hline
-\textbackslash{;} & 5/18 of \textbackslash{quad} (= 5 mu) \\\hline
-\textbackslash{!} & -3/18 of \textbackslash{quad} (= -3 mu) \\\hline
-\textbackslash\ (space) & equivalent of space in normal text \\\hline
-\textbackslash{qquad} & tiwce of \textbackslash{quad} (= 36 mu) \\
+\B{quad} & space equal to the current font size (= 18 mu) \\\hline
+\B{,} & 3/18 of \B{quad} (= 3 mu) \\\hline
+\B{:} & 4/18 of \B{quad} (= 4 mu) \\\hline
+\B{;} & 5/18 of \B{quad} (= 5 mu) \\\hline
+\B{!} & -3/18 of \B{quad} (= -3 mu) \\\hline
+\b\ (space) & equivalent of space in normal text \\\hline
+\B{qquad} & tiwce of \B{quad} (= 36 mu) \\
 \end{tabular}
 \end{center}
 Inline formula looks different to display one. For example $\lim_{x \rightarrow \infty}(\frac{1}{x})$, in display mode:
-$$\lim_{x \rightarrow \infty}(\frac{1}{x})$$
+\[\lim_{x \rightarrow \infty}(\frac{1}{x})\]
 And $\sum_{i=0}^{n} n^2$, in display mode:
-$$\sum_{i=0}^{n} n^2$$
+\[\sum_{i=0}^{n} n^2\]
 
 %%%%%%%
 \chapter{Examples in math mode}
@@ -139,16 +163,16 @@ p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\
 x&=y           &  w &=z              &  a&=b+c\\
 2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b
 \end{align*}
-\begin{flalign}
-&hello&&\\
-\nonumber&world\\
+\begin{align}
+&hello\\
+&\nonumber world\\
 &hello~world
-\end{flalign}
+\end{align}
 \begin{gather*}
 w=a+b+c\\
 x=i+j+k+m+n
 \end{gather*}
-$$y = \int_a^b e^x dx$$
+\[y = \int_a^b e^x dx\]
 
 %%%%%%%
 \chapter{Integrals, sums and limits}
@@ -167,35 +191,39 @@ $$y = \int_a^b e^x dx$$
 &\lim_{x \rightarrow 0}(x + 1)^{\frac{1}{x}}=e
 \end{flalign}
 
-%%%%%%%
 \chapter{Greek letters and math symbols}
 Greek letters:\\
-$\alpha A \quad
-\beta B	 \quad
-\gamma \Gamma	\quad
-\delta \Delta	\quad
-\epsilon \varepsilon \quad
-\zeta Z	 \quad
-\eta H \quad
-\theta \vartheta \Theta \\
+\begin{align*}
+\alpha A&~alpha
+&\beta B&~beta
+&\gamma \Gamma&~gamma
+&\delta \Delta&~delta\\
 %
-\iota I	 \quad
-\kappa K \quad
-\lambda \Lambda \quad
-\mu M \quad
-\nu N \quad
-\xi\Xi \quad
-o O \quad
-\pi \Pi \\
+\epsilon \varepsilon&~epsilon
+&\zeta Z&~zeta
+&\eta H&~eta
+&\theta \vartheta \Theta&~theta\\
 %
-\rho\varrho P \quad
-\sigma \Sigma \quad
-\tau T \quad
-\upsilon \Upsilon \quad
-\phi \varphi \Phi \quad
-\chi X \quad
-\psi \Psi \quad
-\omega \Omega$
+\iota I&~iota
+&\kappa K&~kappa
+&\lambda \Lambda&~lambda
+&\mu M&~mu\\
+%
+\nu N&~nu
+&\xi \Xi&~xi
+&o O&~o
+&\pi \Pi&~pi\\
+%
+\rho \varrho P&~rho
+&\sigma \Sigma&~sigma
+&\tau T&~tau
+&\upsilon \Upsilon&~upsilon\\
+%
+\phi \varphi \Phi&~phi
+&\chi X&~chi
+&\psi \Psi&~psi
+&\omega \Omega&~omega
+\end{align*}
 \\\\
 Arrows\\
 $
@@ -265,7 +293,7 @@ $
 \vee\;
 \oplus\;
 \otimes	\;
-%\Box\;
+%\box\;
 %\boxtimes\;
 \equiv\;
 \cong
@@ -275,7 +303,7 @@ $
 %%%%%%%
 \chapter{Special symbols in LaTeX}
 \begin{center}
-\begin{tabular}{|m{0.3cm}|m{7cm}|} \hline
+\begin{tabular}{p{0.3cm}p{7cm}} \hline
      & Function \\\hline
 \#   & Macro parameter \\\hline
 \$   & Math mode \\\hline
@@ -285,7 +313,7 @@ $
 \_   & Subscript(in math mode) \\\hline
 \{\} & Processing block \\\hline
 \~{} & Unbreakable space, use it whenever you want to leave a space which is unbreakable\\\hline
-\textbackslash & Starting commands, which extend until the first non-alphanumerical character\\\hline
+\B   & Starting commands, which extend until the first non-alphanumerical character\\\hline
 \end{tabular}
 \end{center}
 
@@ -297,22 +325,23 @@ Example of formula list:
 &\lim_{x \rightarrow \infty}{\frac{f(x)}{g(x)}}=0&&
 \end{flalign}
 
-$$\oint \lim_{x \rightarrow \infty}=unknown$$
+\[\oint \lim_{x \rightarrow \infty}=unknown\]
 \clearpage %%%%%%%
 
 Example of ordered list:
-\begin{enumerate}
+\begin{CircledNumberList}
 \item Here we go.
 \item Nothing special.
-\end{enumerate}
+\end{CircledNumberList}
+
 Example of simple list:
-\begin{itemize}
+\begin{list}{*~}{}
 \item One.
 \item Two.
-\end{itemize}
-Example of table{\tiny(Fixed length depend on \textbackslash{usepackage\{array\}})}:\\
+\end{list}
+Example of table:\\
 \begin{center}
-\begin{tabular}{m{2cm} m{2cm}|l}
+\begin{tabular}{p{2cm}p{2cm}|l}
 \hline
 Abc & God & Hoo \\
 \hline
@@ -327,7 +356,7 @@ Ghijk & Table & Bar \\
 
 \chapter{The 7 units in LaTeX}
 \begin{center}
-\begin{tabular}{l|m{6cm}}
+\begin{tabular}{l|p{6cm}}
 \textbf{Abbr.} & \textbf{Value} \\\hline
 pt & a point is approximately 1/72.27 inch, that means about 0.0138 inch or 0.3515 mm (exactly point is defined as 1/864 of American printer’s foot that is 249/250 of English foot) \\\hline
 mm & a millimeter \\\hline

@@ -1,0 +1,42 @@
+\documentclass[fleqn]{minimal}
+
+\usepackage[
+  paperwidth=8.5cm,
+  paperheight=11.4cm,
+  margin=0cm,
+]{geometry}
+\usepackage[
+  pdfauthor={QXF},
+]{hyperref}
+\usepackage{
+  amsmath,
+}
+\hypersetup{bookmarks=true}
+
+\setlength{\mathindent}{0pt}
+\setlength{\parindent}{0pt}
+\def\chapter#1{\pdfbookmark{#1}{id:#1}\textbf{#1}\\}
+
+\begin{document}
+\chapter{Hello}
+Voila, this is a simple text.
+Use the hyperref package, included in pretty much every latex distribution these days.In combination with hyperref package it might cause some problems like described here. Just wanted to mention this, since I just experienced the same problem.\\
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit)
+entering extended mode\\
+\\%%%%%%%
+Do not use \emph{book} class to generate PDF to be used in Kindle, or the words in PDF will not be regconized by Kindle.
+
+\[ \int_{hello}^{world}\frac{dividen}{divider} \Omega~this~is~complex \]
+\[ \int_{hello}^{world}\frac{dividen}{divider} \Omega~this~is~complex \]
+
+
+\newlength\q
+\setlength\q{\dimexpr .334\textwidth -2\tabcolsep}
+\noindent\begin{tabular}{p{\q}p{\q}p{\q}}
+\[\int abc\] & test text & voila\\
+c & d & e
+\end{tabular}
+
+\end{document}

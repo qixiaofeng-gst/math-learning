@@ -4,7 +4,11 @@
 
 \usepackage{array}
 \usepackage{amsmath}
-\usepackage[paperwidth=8.5cm, paperheight=11.4cm, margin=0cm]{geometry}
+\usepackage[
+  paperwidth=8.5cm,
+  paperheight=11.4cm,
+  margin=0cm,
+]{geometry}
 
 \usepackage{hyperref}
 \hypersetup{bookmarks=true}
@@ -31,6 +35,43 @@
 \setlength{\parindent}{0cm}
 
 \begin{document} %%%%%%%
+
+Read about other form of \$\$ and \$\$..\$\$.\\
+Read about length.
+
+Below lines can output things as is:\\
+\textit{
+\textbackslash{begin\{verbatim\}}\\
+\hspace*{2ex}Anything you want to show\\
+\textbackslash{end\{verbatim\}}
+}\\
+Unfortunately the \emph{verbatim} environment could not be used recursively.\\
+\\
+Belows created a \emph{tabular} environment column type which can hide the corresponding column:
+{\scriptsize
+\begin{verbatim}
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+\end{verbatim}
+}
+Belows could allow multipage table usage.
+{\scriptsize
+\begin{verbatim}
+\usepackage{longtable}
+
+% Use
+
+\begin{longtable}
+  ...
+\end{longtable}
+
+% instead of
+
+\begin{tabular}
+  ...
+\end{tabular}
+\end{verbatim}
+}
 
 \chapter{Document structure}
 By default the new chapters are opening on the right hand page. Use \textit{\scriptsize\textbackslash{}documentclass[openany]\{book\}} to cancel the default behavior.\\

@@ -1,12 +1,15 @@
-% Only used in preamble with document class minimal.
+\documentclass[fleqn]{minimal}
 
 \setlength\tabcolsep{0.1cm}
 \setlength\parskip{8pt}
 \setlength\parindent{0cm}
 
+%\PackageError{packagename}{don't do that}{extra help}
+
 \usepackage{
   amsmath,
   hyperref,
+  xcolor,
 }
 \usepackage[
   paperwidth=8.5cm,
@@ -24,7 +27,7 @@
 \def\qxftestat(#1,#2,#3){Here we go: #1, #2, #3\\}
 
 \makeatletter
-\g@addto@macro\normalsize{%
+\g@addto@macro\normalsize{% Set spaces around equations.
   \setlength\abovedisplayskip{2pt}
   \setlength\belowdisplayskip{2pt}
   \setlength\abovedisplayshortskip{2pt}
@@ -32,23 +35,22 @@
 }
 \makeatother
 
+\allowdisplaybreaks[1]% amsmath. 4 is default, use associated with \displaybreak
+
+\newcounter{CCount}
 \newcounter{GroupEquationInner}
-\newcommand\C{\addtocounter{GroupEquationInner}{
-  1
-}\textcircled{\small\arabic{GroupEquationInner}}}
+\newcommand\C{
+  \addtocounter{GroupEquationInner}{1}
+  \addtocounter{CCount}{1}
+  \textcircled{\small\arabic{GroupEquationInner}}}
+\newcommand\CC{\arabic{CCount}}
 \newcommand\Creset{\setcounter{GroupEquationInner}{0}}
-\newenvironment{GroupEquation}{
-  \begin{equation}
-  \begin{aligned}
-}{
-  \end{aligned}
-  \end{equation}
-  \let\C=\relax
-}
+\newcommand\CCreset{\setcounter{CCount}{0}}
+\newcommand{\slfrac}[2]{\left.#1\middle/#2\right.}% It sizes the slash based on the size of the numerator and denominator.
 
 \newcounter{chapter}
 \setcounter{chapter}{0}
-\numberwithin{equation}{chapter}% Provided by amsmath.
+\numberwithin{equation}{chapter}% amsmath.
 \newcommand\chapter[1]{
   \clearpage
   \addtocounter{chapter}{1}

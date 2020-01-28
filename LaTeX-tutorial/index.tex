@@ -5,6 +5,7 @@
 \usepackage{
   amsmath,
   hyperref,
+  xcolor,
 }
 \usepackage[
   paperwidth=8.5cm,
@@ -31,6 +32,12 @@
 \newcommand\B{\textbackslash}
 \newcommand\chapter[1]{\clearpage\pdfbookmark{#1}{id:#1}\textbf{#1}\\}
 \newcommand\small{\fontsize{7pt}{7pt}\selectfont}
+
+\ifdefined\BB
+\PackageError{dummydemopackage}{BB cannot be overrided}{Perhaps change the name}
+\else
+\def\BB[#1](#2){Hello #1 and #2, this is produced by macro BB.}
+\fi
 
 % Make chapter header use less space.
 \makeatletter
@@ -95,7 +102,30 @@ Belows could allow multipage table usage.
 \end{tabular}
 \end{verbatim}
 }
-Do not use \emph{book} class to generate PDF to be used in Kindle, or the words in PDF will not be regconized by Kindle.
+Do not use \emph{book} class to generate PDF to be used in Kindle, or the words in PDF will not be regconized by Kindle.\\
+\verb|Use \par instead of \\ as much as possible.|
+
+\rule[0.5\parskip]{4cm}{0.5pt}
+
+\textcolor{gray}{\rule{0.4pt}{\parskip}~{\rule{0.4pt}{\parskip}}~{\rule{0.4pt}{\parskip}}~{\rule{0.4pt}{\parskip}}}
+
+\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+Hello!{\setlength\fboxsep{0pt}\fbox{What do you see?}}
+
+Hello!\framebox[4cm]{There}\\
+\BB[ff](bb)\\
+There are \verb|\csname| and \verb|\ifcsname|\\ to work with \verb|\endcsname|.\\
+Created with \verb|\loop|, note that 3-1 is skipped:
+\newcount\foo
+\foo=10
+\loop
+  \advance\foo -1\relax
+  n:\the\foo~or \number\foo,
+  \ifnum \foo = 4 \foo 1\relax\fi
+\ifnum \foo > 0
+\repeat
+\let\foo=\relax
 
 \chapter{Document structure}
 By default the new chapters are opening on the right hand page. Use \textit{\b documentclass[openany]\{book\}} to cancel the default behavior.\\

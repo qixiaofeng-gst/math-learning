@@ -1,0 +1,165 @@
+\input{../qxfkindle}
+\begin{document}
+
+\chapter{Linear Algebra}
+
+\textbf{Matrix Definitions:}
+\Creset
+\begin{align*}
+\C~&A_{m\times n}=\begin{bmatrix}
+      a_{11} &~a_{12} &~\cdots &~a_{1n}\\
+      a_{21} &~a_{22} &~\cdots &~a_{2n}\\
+      \vdots &~\vdots &~       &~\vdots\\
+      a_{m1} &~a_{m2} &~\cdots &~a_{mn}
+      \end{bmatrix}=[a_{ij}]_{m\times n }\\
+   &\text{Abbreviate as}~A.~\text{For}~m=n,\,\text{write as}~A_n~\tag{Matrix}\\
+   &\text{For}~B=[b_{ij}]_{m\times n},\,a_{ij}=b_{ij},\\
+   &\text{write as}~A=B\tag{Matrix Equivalence}\\
+   &\text{For}~\forall a_{ij}=0,~\text{write as}~O\tag{Zero Matrix}\\
+   &\text{For}~m=n,\,\forall(i\neq j)\,a_{ij}=0,\,\forall(i=j)\,a_{ij}=1,\\
+   &\text{write as}~E\tag{Identity Matrix}\\
+   &\text{Recollect here.}\tag{Block Matrix}\\
+\C~&A+B=[a_{ij} + b_{ij}]_{m\times n}\tag{Matrix Addition}\\
+   &C=AB=[a_{ij}]_{m\times s}[b_{ij}]_{s\times n}=[c_{ij}]_{m\times n},\\
+   &c_{ij}=\sum_{k=1}^{s}a_{ik}b_{kj}\tag{Matrix Multiplication}\\
+   &kA=k[a_{ij}]_{m\times n}=[ka_{ij}]_{m\times n}\tag{Matrix Scalar Multiplication}\\
+   &A=[a_{ij}]_{m\times n},\,A^T=[a_{ji}]_{n\times m}\tag{Transposition}\\
+\C~&\text{For}~A_n,~\text{there is}~B~{that let}~AB=BA=E,\\
+   &\text{write}~B~\text{as}~A^{-1}\tag{Inverse of Matrix}\\
+   &\text{For}~A~\text{that has}~A^{-1},\\
+   &\text{call it invertible matrix}\tag{Invertible Matrix}\\
+\C~&\text{Elementary Row Operations,}\\
+   &\text{matrix row write as}~R_i,\\
+   &R_i\leftrightarrow R_j\tag{Row Switching}\\
+   &kR_i\rightarrow R_i\tag{Row Multiplication}\\
+   &kR_j + R_i\rightarrow R_i\tag{Row Addition}\\
+\C~&\text{Elementary Matrix}\\
+   &\text{Apply row switching to}~E\tag{\(E_{ij}\)}\\
+   &\text{Apply row multiplication to}~E\tag{\(E_i(k)\)}\\
+   &\text{Apply row addition to}~E\tag{\(E_{ij}(k)\)}\\
+\C~&\text{For}~AA^T=A^TA=E\Leftrightarrow A^T=A^{-1}\tag{Orthogonal Matrix}\\
+\C~&|A_n|=\begin{vmatrix}
+      a_{11} &~a_{12} &~\cdots &~a_{1n}\\
+      a_{21} &~a_{22} &~\cdots &~a_{2n}\\
+      \vdots &~\vdots &~       &~\vdots\\
+      a_{n1} &~a_{n2} &~\cdots &~a_{nn}
+      \end{vmatrix}\\
+   &\qquad=\sum_{j_1 j_2 \cdots j_n} (-1)^{\tau{(j_1 j_2 \cdots j_n)}}
+      a_{1j_1}a_{2j_2}\cdots a_{nj_n}\tag{Determinant}\\
+\C~&\text{Pick}~p~\text{rows and}~q~\text{columns from}~A,\\
+   &\text{use the cross elements of these rows and columns}\\
+   &\text{to construct a matrix.}\tag{Submatrix}\\
+   &\text{For}~p=q=k,\\
+   &\text{write as}~\ps{A}_k\tag{Principal Submatrix}\\
+\C~&\text{For}~\exists{r},\,\forall|\ps{A}_r|\neq 0,\,\forall|\ps{A}_{r+1}|=0,\\
+   &\text{write as}~r(A)\tag{Rank of Matrix}\\
+\C~&M_{ij}=\begin{vmatrix}
+      a_{11}&~\cdots&~a_{1,j-1}&~a_{1,j+1}&~\cdots&~a_{1n}\\
+      \vdots&~      &~\vdots   &~\vdots   &~      &~\vdots\\
+      a_{i-1,1}&~\cdots&~a_{i-1,j-1}&~a_{i-1,j+1}&~\cdots&~a_{i-1,n}\\
+      a_{i+1,1}&~\cdots&~a_{i+1,j-1}&~a_{i+1,j+1}&~\cdots&~a_{i+1,n}\\
+      \vdots&~      &~\vdots   &~\vdots   &~      &~\vdots\\
+      a_{n1}&~\cdots&~a_{n,j-1}&~a_{n,j+1}&~\cdots&~a_{nn}
+      \end{vmatrix}\tag{Minor}\\
+\C~&A_{ij}=(-1)^{i+j}M_{ij}\tag{Cofactor}\\
+\C~&A^* = \begin{bmatrix}
+      A_{11} &~ A_{12} &~ \cdots &~ A_{1n}\\
+      A_{21} &~ A_{22} &~ \cdots &~ A_{2n}\\
+      \vdots &~ \vdots &~        &~ \vdots\\
+      A_{n1} &~ A_{n2} &~ \cdots &~ A_{nn}\\
+      \end{bmatrix}\tag{Cofactor Matrix}\\
+\C~&\text{For}~AA^*=A^*A=E\Leftrightarrow A^*=A^{-1}\tag{Unitary Matrix}
+\end{align*}
+
+\textbf{Vector:}
+\Creset
+\begin{align*}
+\C~&\text{For 1 column matrix}~A_{n\times 1},\\
+   &\text{call it column vector, or simply vector},\\
+   &\text{write it as}~\V{\alpha}\tag{n-dimensional Vector}\\
+   &\text{For all zero element vector,}\\
+   &\text{write as}~\V{0}\tag{Zero Vector}\\
+\C~&\text{Vector Operation}\\
+   &\text{For the rest of this \textbf{Vector} section,}\\
+   &\V{\alpha} = \begin{bmatrix}
+      a_1\\a_2\\\vdots\\a_n
+   \end{bmatrix};\;\V{\beta} = \begin{bmatrix}
+      b_1\\b_2\\\vdots\\b_n
+   \end{bmatrix};\;k_1,k_2,\cdots,k_n \in \V{Z}\\
+   &\V{\alpha} + \V{\beta} = \begin{bmatrix}
+      a_1 + b_1\\a_2 + b_2\\\vdots\\a_n + b_n
+   \end{bmatrix}\tag{Addition}\\
+   &k\V{\alpha} = \begin{bmatrix}
+      k a_1\\k a_2\\\vdots\\k a_n
+   \end{bmatrix}\tag{Scalar Multiplication}\\
+   &\V{\alpha}^T\V{\beta} = \begin{bmatrix}
+      a_1~a_2~\cdots~a_n
+   \end{bmatrix}\begin{bmatrix}
+      b_1\\b_2\\\vdots\\b_n
+   \end{bmatrix}\\
+   &= a_1b_1 + a_2b_2 + \cdots + a_nb_n\tag{Dot/Inner Product}\\
+\C~&\V{\beta} = k_1\V{\alpha}_1 + k_2\V{\alpha}_2 + \cdots + k_n\V{\alpha}_n\tag{Linear Combination \& Linear Representation}\\
+\C~&\V{\alpha}
+\end{align*}
+
+\textbf{Elementary Matrix properties:}
+\begin{align*}
+\Creset
+\C~&E_{ij}^{-1}=E_{ij}\\
+\C~&|E_{ij}|=-1\Rightarrow |E_{ij}A|=-|A|\N\\
+\Creset
+\C~&E_i^{-1}(k)=E_{i}(1/k)\\
+\C~&E_i(k)~\text{and}~E_i^{-1}(k)~\text{are diagonal matrices}\\
+\C~&|E_i(k)|=k\Rightarrow |E_i(k)A|=k|A|\N\\
+\Creset
+\C~&E_{ij}(k)~\text{is kind of shear mapping}\\
+\C~&E_{ij}^{-1}(k)=E_{ij}(-k)\\
+\C~&E_{ij}(k)~\text{and}~E_{ij}^{-1}(k)~\text{are triangular matrices}\\
+\C~&|E_{ij}(k)|=1\Rightarrow |E_{ij}(k)A|=|A|\N
+\end{align*}
+
+\textbf{Determinant properties:}
+\begin{align*}
+\Creset
+&\C~\text{row/column exchange update sign}\\
+&\C~\text{common divisor can be extracted}\\
+&\C~\text{row/column can be splitted}\\
+&\C~\text{multiply\&plus equivalent}\\
+&\C~|A^T|=|A|\N
+\end{align*}
+
+\textbf{Special forms' properties:}
+\Creset
+\begin{align*}
+\C~&\text{Triangular form,}\,|A| = \prod_{i=1}^n{a_{ii}}\\
+   &\text{Secondary coefficient:}\:(-1)^{\frac{n(n-1)}{2}}\\
+\C~&\text{Laplace form,}\,\begin{vmatrix}A_m&~O\\O&~B_n\end{vmatrix} = |A|\cdot|B|\\
+   &\text{Secondary coefficient:}\:(-1)^{mn}\\
+\C~&\text{Vandermonde form,}\\
+   &|A|=\begin{vmatrix}
+   1     &~ 1     &~ \cdots &~ 1\\
+   x_1   &~ x_2   &~ \cdots &~ x_n\\
+   x_1^2 &~ x_2^2 &~ \cdots &~ x_n^2\\
+   \vdots&~ \vdots&~        &~ \vdots\\
+   x_1^{n-1} &~ x_2^{n-1} &~ \cdots &~ x_n^{n-1}
+   \end{vmatrix} = \prod_{1\leq j\leq i\leq n}{(x_i - x_j)}\\
+   &\text{Another style to represent}~A:\\
+   &A_{i,j} = x_j^{i-1},\,(1\leq i,j \leq n)\N
+\end{align*}
+
+\textbf{Useful formulas:}
+\begin{align*}
+\Creset
+\C~&AA^*=A^*A=|A|E\\
+\C~&|A| = \sum_{k=1}^{n} a_{ik} A_{ik},\,\text{true for}~i=1,2,\cdots,n\\
+   &\text{Above column form is true}\\
+\C~&\sum_{k=1}^{n} a_{ik} A_{jk} = 0,\,(i\neq j),~\text{column form is true}\\
+\C~&|kA_n| = k^n|A|\\
+\C~&|A_nB_n| = |A|\cdot|B|\\
+\C~&|A^*_n| = |A|^{n-1}\\
+\C~&|A^{-1}_n|=|A|^{-1}\\
+\C~&|A_n|=\prod_{i=1}^{n}\lambda_i,\,(\lambda_i~\text{is eigenvalue of}~A_n)\\
+\C~&A\sim B \Rightarrow |A| = |B|\N
+\end{align*}
+
+\end{document}

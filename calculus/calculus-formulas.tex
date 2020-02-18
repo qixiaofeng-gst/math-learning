@@ -87,7 +87,7 @@ Total \CC~equations.
 
 \chapter{Linear Algebra}
 
-\textbf{Definitions:}
+\textbf{Matrix Definitions:}
 \Creset
 \begin{align*}
 \C~&A_{m\times n}=\begin{bmatrix}
@@ -153,6 +153,37 @@ Total \CC~equations.
       A_{n1} &~ A_{n2} &~ \cdots &~ A_{nn}\\
       \end{bmatrix}\tag{Cofactor Matrix}\\
 \C~&\text{For}~AA^*=A^*A=E\Leftrightarrow A^*=A^{-1}\tag{Unitary Matrix}
+\end{align*}
+
+\textbf{Vector:}
+\Creset
+\begin{align*}
+\C~&\text{For 1 column matrix}~A_{n\times 1},\\
+   &\text{call it column vector, or simply vector},\\
+   &\text{write it as}~\V{\alpha}\tag{n-dimensional Vector}\\
+   &\text{For all zero element vector,}\\
+   &\text{write as}~\V{0}\tag{Zero Vector}\\
+\C~&\text{Vector Operation}\\
+   &\text{For the rest of this \textbf{Vector} section,}\\
+   &\V{\alpha} = \begin{bmatrix}
+      a_1\\a_2\\\vdots\\a_n
+   \end{bmatrix};\;\V{\beta} = \begin{bmatrix}
+      b_1\\b_2\\\vdots\\b_n
+   \end{bmatrix};\;k_1,k_2,\cdots,k_n \in \V{Z}\\
+   &\V{\alpha} + \V{\beta} = \begin{bmatrix}
+      a_1 + b_1\\a_2 + b_2\\\vdots\\a_n + b_n
+   \end{bmatrix}\tag{Addition}\\
+   &k\V{\alpha} = \begin{bmatrix}
+      k a_1\\k a_2\\\vdots\\k a_n
+   \end{bmatrix}\tag{Scalar Multiplication}\\
+   &\V{\alpha}^T\V{\beta} = \begin{bmatrix}
+      a_1~a_2~\cdots~a_n
+   \end{bmatrix}\begin{bmatrix}
+      b_1\\b_2\\\vdots\\b_n
+   \end{bmatrix}\\
+   &= a_1b_1 + a_2b_2 + \cdots + a_nb_n\tag{Dot/Inner Product}\\
+\C~&\V{\beta} = k_1\V{\alpha}_1 + k_2\V{\alpha}_2 + \cdots + k_n\V{\alpha}_n\tag{Linear Combination \& Linear Representation}\\
+\C~&\V{\alpha}
 \end{align*}
 
 \textbf{Elementary Matrix properties:}

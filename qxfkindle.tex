@@ -40,11 +40,11 @@
 
 \newcounter{CCount}
 \newcounter{GroupEquationInner}
-\newcommand\C{
+\newcommand\C{ % Circled number
   \addtocounter{GroupEquationInner}{1}
   \addtocounter{CCount}{1}
   \textcircled{\small\arabic{GroupEquationInner}}}
-\newcommand\CC{\arabic{CCount}}
+\newcommand\CC{\arabic{CCount}} % Count of circled number
 \newcommand\Creset{\setcounter{GroupEquationInner}{0}}
 \newcommand\CCreset{\setcounter{CCount}{0}}
 \newcommand{\slfrac}[2]{\left.#1\middle/#2\right.}% It sizes the slash based on the size of the numerator and denominator.
@@ -59,13 +59,32 @@
   \pdfbookmark{\arabic{chapter}.~#1}{id:\arabic{chapter}}
   \textbf{\arabic{chapter}.~#1}
 }
-\newcommand\E{\nonumber}
+\newcommand\E{\nonumber} % Empty line end
 \newcommand\small{\fontsize{7pt}{8pt}\selectfont}
-\DeclareMathOperator{\D}{\mathnormal{\frac{d}{dx}}}
+\DeclareMathOperator{\D}{\mathnormal{\frac{d}{dx}}} % Differential operator
 \DeclareMathOperator{\arccot}{arccot}
 \newcommand\ps[1]{\text{ps}(#1)}
-\newcommand\I[1]{\int #1 \; dx}
-\newcommand\N{\stepcounter{equation}\tag{\theequation}}
-\newcommand\V[1]{\boldsymbol{#1}}
-\newcommand\VG[2]{\V{#1}_1,\V{#1}_2,\cdots,\V{#1}_{#2}}
-\newcommand\SG[2]{{#1}_1,{#1}_2,\cdots,{#1}_{#2}}
+\newcommand\I[1]{\int #1 \; dx} % Integral operator
+\newcommand\N{\stepcounter{equation}\tag{\theequation}} % Number tag of equation
+\newcommand\V[1]{\boldsymbol{#1}} % Vector (represented with a single character)
+\newcommand\VG[2]{\V{#1}_1,\V{#1}_2,\cdots,\V{#1}_{#2}} % Vector group
+\newcommand\SG[2]{{#1}_1,{#1}_2,\cdots,{#1}_{#2}} % Scalar group
+\newcommand\M[3]{\begin{bmatrix} % Matrix (General form, simplest)
+#1_{11} &~#1_{12} &~\cdots &~#1_{1#3}\\
+#1_{21} &~#1_{22} &~\cdots &~#1_{2#3}\\
+\vdots &~\vdots &~       &~\vdots\\
+#1_{#21} &~#1_{#22} &~\cdots &~#1_{#2#3}
+\end{bmatrix}}
+\newcommand\MD[2]{\begin{vmatrix} % Matrix determinant
+#1_{11} &~#1_{12} &~\cdots &~#1_{1#2}\\
+#1_{21} &~#1_{22} &~\cdots &~#1_{2#2}\\
+\vdots &~\vdots &~       &~\vdots\\
+#1_{#21} &~#1_{#22} &~\cdots &~#1_{#2#2}
+\end{vmatrix}}
+\newcommand\MC[2]{\begin{bmatrix} % Matrix column (single column matrix)
+#1_1\\#1_2\\\vdots\\#1_#2
+\end{bmatrix}}
+\newcommand\LE[5]{ % Linear equation (simplest)
+#1_{#31}#2_1+#1_{#32}#2_2+\cdots+#1_{#3#4}#2_#4=#5
+}
+\newcommand\LD{\cdots\cdots\cdots\cdots\cdots\cdots\cdots} % Long dots

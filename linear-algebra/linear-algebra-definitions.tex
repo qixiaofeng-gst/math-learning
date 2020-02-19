@@ -85,15 +85,15 @@
       b_1\\b_2\\\vdots\\b_n
    \end{bmatrix};\;k_1,k_2,\cdots,k_n\in\V{R}\\
    &k_1k_2\cdots k_n\neq 0;\;s,t\in\V{Z}\\
-   &\mathbb{A}_s = \V{\alpha}_1,\V{\alpha}_2,\cdots,\V{\alpha}_s;\;
-    \mathbb{B}_t = \V{\beta}_1,\V{\beta}_2,\cdots,\V{\beta}_t\\
+   &\mathbb{A}_s = \VG{\alpha}{s};\;
+    \mathbb{B}_t = \VG{\beta}{t}\\
    &\V{\alpha} + \V{\beta} = \begin{bmatrix}
       a_1 + b_1\\a_2 + b_2\\\vdots\\a_n + b_n
    \end{bmatrix}\tag{Addition}\\
    &k\V{\alpha} = \begin{bmatrix}
       k a_1\\k a_2\\\vdots\\k a_n
    \end{bmatrix}\tag{Scalar Multiplication}\\
-   &\V{\alpha}^T\V{\beta} = \begin{bmatrix}
+   &(\V{\alpha},\V{\beta}) = \V{\alpha}^T\V{\beta} = \begin{bmatrix}
       a_1~a_2~\cdots~a_n
    \end{bmatrix}\begin{bmatrix}
       b_1\\b_2\\\vdots\\b_n
@@ -110,7 +110,38 @@
 \C~&\mathbb{S}_r\subset\mathbb{A}_s,\text{~(1)~}\mathbb{S}_r\text{~is~linearly~independent};\\
    &\text{(2) Add }\forall\V{\alpha}_i\in\mathbb{A}_s\text{~into~}\mathbb{S}_r\text{~to~make~a~}\mathbb{S'}_{r+1},\\
    &\mathbb{S'}_{r+1}\text{ is linearly correlated. Say }\mathbb{S}_r\text{ is maximal}\\
-   &\text{linearly independent subset of }\mathbb{A}_s\tag{Maximal Linearly Independent Subset}
+   &\text{linearly independent subset of }\mathbb{A}_s\tag{Maximal Linearly Independent Subset}\\
+\C~&\text{The number }r\text{ of }\mathbb{S}_r\text{ is called rank of }\mathbb{A}_s,\text{ write as}\\
+   &r(\VG{\alpha}{s})\text{ or }r\tag{Rank of Vector Set}\\
+\C~&\text{n-dimentional vector space has 3 constituents:}\\
+   &\text{(1) Universal set of n-dimentional vectors}\\
+   &\text{(2) Scalar multiplication}\\
+   &\text{(3) Addition}\tag{Vector Space}\\
+\C~&W\text{ is a n-dimensional vector set that satisfies:}\\
+   &\text{(1) }\forall\V{\alpha},\V{\beta}\in W\text{ satisfies }\V{\alpha}+\V{\beta}\in W\\
+   &\text{(2) }\forall\V{\alpha}\in W,k\in R\text{ satisfies }k\V{\alpha}\in W\\
+   &\text{Say }W\text{ is a subspace of n-dimensional vector space}\tag{Linear Subspace}\\
+\C~&\text{Vector space }V\text{ has vectors }\VG{\alpha}{m}\text{ satisfy:}\\
+   &\text{(1) }\VG{\alpha}{m}\text{ is linearly indenpendent}\\
+   &\text{(2) }\forall\V{\beta}\in V\text{ satisfy }x_1\V{\alpha}_1+x_2\V{\alpha}_2+\cdots+x_m\V{\alpha}_m=\V{\beta}\\
+   &\text{Say }\VG{\alpha}{m}\text{ is a basis of }V\tag{Basis}\\
+   &\text{Say number }m\text{ is dimension of }V\tag{Dimension}\\
+   &\text{Say }\SG{x}{m}\text{ is coordinate of }\V\beta\text{ under basis}\\
+   &\VG{\alpha}{m}\tag{Cartesian Coordinate}\\
+   &\text{Basis of }V:\VG{e}{m}\text{ that satisfies}\\
+   &(\V{e}_i,\V{e}_j)=\begin{cases}1,&i=j\\0,&i\neq j\end{cases}\tag{Standard Basis}\\
+\C~&\VG{\alpha}{n}\text{ and }\VG{\beta}{n}\text{ both are vector}\\
+   &\text{space basis, and satisfy }\\
+   &[\VG{\beta}{n}] = [\VG{\alpha}{n}]C\text{ and}\\
+   &C=\begin{bmatrix}
+   c_{11}~&c_{12}~&\cdots~&c_{1n}\\
+   c_{21}~&c_{22}~&\cdots~&c_{2n}\\
+   \vdots~&\vdots~&      ~&\vdots\\
+   c_{n1}~&c_{n2}~&\cdots~&c_{nn}
+   \end{bmatrix},\text{ call }C\text{ transition matrix}\\
+   &\text{for }\VG{\alpha}{n}\text{ change to }\VG{\beta}{n}\tag{Transition Matrix}
 \end{align*}
+
+\chapter{System of Linear Equations}
 
 \end{document}

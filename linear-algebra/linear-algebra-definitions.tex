@@ -122,14 +122,32 @@
    \LD\\
    \LE{a}{x}{m}{n}{0}
    \end{cases}\\
-   &\text{Vector form: }\LE{\V{\alpha}}{x}{}{n}{\V{0}}\\
+   &\text{Vector form: }\LE{\V\alpha}{x}{}{n}{\V{0}}\\
    &\text{Matrix form: }A_{m\times n}\V{x}=\V{0},\text{ that}\\
    &A=\M{a}{m}{n},\,\V{x}=\MC{x}{n},\,\V{0}=\begin{bmatrix}0\\0\\\vdots\\0\end{bmatrix}\\
-   &\text{Solution: }\V\xi\\
-   &\text{Solution set: }\VG{\xi}{n-r}\\
+   &\text{Solution: }\V\xi=\MC{c}{n}\text{ satisfies }A\V\xi=\V{0}\\
+   &\text{Basic solution set: solutions }\VG{\xi}{n-r}\text{ satisfy:}\\
+   &\text{(1) }\VG{\xi}{n-r}\text{ linearly independent}\\
+   &\text{(2) For }\forall\V\xi:\:\VG{\xi}{n-r}\xrightarrow{LEXP}\V\xi\\
+   &\text{General solution: }\LEX{k}{\V\xi}{n-r}\\
    &\tag{System of homogeneous linear equations}\\
-\C~&\tag{System of inhomogeneous linear equations}\\
-\C~&\tag{Cramer's rule}\\
+\C~&\text{General form:}\\
+   &\begin{cases}
+   \LE{a}{x}{1}{n}{b_1}\\
+   \LE{a}{x}{2}{n}{b_2}\\
+   \LD\\
+   \LE{a}{x}{m}{n}{b_m}\\
+   \end{cases}\\
+   &\text{Vector form: }\LE{\V\alpha}{x}{}{n}{\V{b}}\\
+   &\text{Matrix form: }A_{m\times n}\V{x}=\V{b},\text{ that}\\
+   &A=\M{a}{m}{n},\,\V{x}=\MC{x}{n},\,\V{b}=\MC{b}{n}\\
+   &\text{Solution: }\V\eta=\MC{c}{n}\text{ satisties }A\V\eta=\V{b}\\
+   &\text{General solution: }\LEX{k}{\V\xi}{n-r}+\V\eta\\
+   &\tag{System of inhomogeneous linear equations}\\
+\C~&\text{For }A_{n\times n}\V{x}=\V{b}\text{ that }|A|\neq0,\text{ there is only one}\\
+   &\text{solution that can be described with:}\\
+   &x_i=\frac{|A_i|}{|A|},i=1,2,\cdots,n;\text{ that}\\
+   &A_i=[\V\alpha_1~\V\alpha_2~\cdots~\V\alpha_{i-1}~\V{b}~\V\alpha_{i+1}~\cdots~\V\alpha_n]\tag{Cramer's rule}
 \end{align*}
 
 \end{document}

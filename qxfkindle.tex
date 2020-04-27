@@ -18,9 +18,7 @@
   margin=0cm,
 ]{geometry}
 
-\hypersetup{
-  bookmarks=true,
-}
+\hypersetup{}
 
 \def\qxffirst def{Yes 'abcdef' is gone: }
 \def\qxfmacro abc{\qxffirst}
@@ -43,7 +41,7 @@
 \newcommand\C{ % Circled number
   \addtocounter{GroupEquationInner}{1}
   \addtocounter{CCount}{1}
-  \textcircled{\small\arabic{GroupEquationInner}}}
+  \text{\textcircled{\small\arabic{GroupEquationInner}}}}
 \newcommand\CC{\arabic{CCount}} % Count of circled number
 \newcommand\Creset{\setcounter{GroupEquationInner}{0}}
 \newcommand\CCreset{\setcounter{CCount}{0}}

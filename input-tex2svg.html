@@ -5,120 +5,110 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width">
-    <title>MathJax v3 with interactive TeX input and SVG output</title>
+    <title>MathJax v2.7.7 with interactive TeX input</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script>
-    (() => {window.onload = () => {
-        const localKey = '__SAVED_TEX__'
-        const texInput = document.getElementById("input")
-        const display = document.getElementById("display")
-        const button = document.getElementById("render")
-        const savedTex = localStorage.getItem(localKey)
-        const convert = () => {
-            //
-            //  Get the TeX input
-            //
-            var input = texInput.value.trim();
-            localStorage.setItem(localKey, input)
-            //
-            //  Disable the display and render buttons until MathJax is done
-            //;
-            button.disabled = display.disabled = true;
-            //
-            //  Clear the old output
-            //
-            output = document.getElementById('output');
-            output.innerHTML = '';
-            //
-            //  Reset the tex labels (and automatic equation numbers, though there aren't any here).
-            //  Get the conversion options (metrics and display settings)
-            //  Convert the input to SVG output and use a promise to wait for it to be ready
-            //    (in case an extension needs to be loaded dynamically).
-            //
-            MathJax.texReset();
-            var options = MathJax.getMetricsFor(output);
-            options.display = display.checked;
-            MathJax.tex2svgPromise(input, options).then(function (node) {
-                //
-                //  The promise returns the typeset node, which we add to the output
-                //  Then update the document to include the adjusted CSS for the
-                //    content of the new equation.
-                //
-                output.appendChild(node);
-                MathJax.startup.document.clear();
-                MathJax.startup.document.updateDocument();
-            }).catch(function (err) {
-                //
-                //  If there was an error, put the message into the output instead
-                //
-                output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
-            }).then(function () {
-                //
-                //  Error or not, re-enable the display and render buttons
-                //
-                button.disabled = display.disabled = false;
-            });
-        }
+        (() => {
+            window.onload = () => {
+                const localKey = '__SAVED_TEX__'
+                const texInput = document.getElementById("input")
+                const display = document.getElementById("display")
+                const button = document.getElementById("render")
+                const savedTex = localStorage.getItem(localKey)
+                const convert = () => {
+                    //
+                    //  Get the TeX input
+                    //
+                    const input = texInput.value.trim()
+                    if (input.length === 0) {
+                        return
+                    }
+                    localStorage.setItem(localKey, input)
+                    //
+                    //  Disable the display and render buttons until MathJax is done
+                    //;
+                    button.disabled = display.disabled = true
+                    //
+                    //  Clear the old output
+                    //
+                    const output = document.getElementById('output')
+                    // TODO Check https://docs.mathjax.org/en/v2.7-latest/api/index.html
+                    console.log(MathJax)
+                    // const html = MathJax.tex2svg('\\sqrt{x^2+1}', {});
+                    const html = '===';
+                    output.innerHTML = ''
+                    output.appendChild(html);
 
-        display.onchange = convert
-        button.onclick = convert
-        if (savedTex) {
-            texInput.value = savedTex
-        } else {
-            texInput.value = '% Enter TeX commands below.'
-        }
-    }})()
+                    button.disabled = display.disabled = false
+                }
+
+                display.onchange = convert
+                button.onclick = convert
+                if (savedTex) {
+                    texInput.value = savedTex
+                } else {
+                    texInput.value = '% Enter TeX commands below.'
+                }
+            }
+        })()
     </script>
     <style>
-    #frame {
-        max-width: 40em;
-        margin: auto;
-    }
-    #input {
-        border: 1px solid grey;
-        margin: 0 0 .25em;
-        width: 100%;
-        font-size: 120%;
-        box-sizing: border-box;
-    }
-    #output {
-        font-size: 120%;
-        margin-top: .75em;
-        border: 1px solid grey;
-        padding: .25em;
-        min-height: 2em;
-    }
-    #output > pre {
-        margin-left: 5px;
-    }
-    .left {
-        float: left;
-    }
-    .right {
-        float: right;
-    }
+        #frame {
+            max-width: 40em;
+            margin: auto;
+        }
+
+        #input {
+            border: 1px solid grey;
+            margin: 0 0 .25em;
+            width: 100%;
+            font-size: 120%;
+            box-sizing: border-box;
+        }
+
+        #output {
+            font-size: 120%;
+            margin-top: .75em;
+            border: 1px solid grey;
+            padding: .25em;
+            min-height: 2em;
+        }
+
+        #output > pre {
+            margin-left: 5px;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
     </style>
 </head>
 
 <body>
-    <div id="frame">
+<div id="frame">
 
-        <h1>MathJax v3: TeX to SVG</h1>
+    <h1>MathJax v3: TeX to SVG</h1>
 
-        <textarea id="input" rows="15" cols="10"></textarea>
-        <br />
-        <div class="left">
-            <input type="checkbox" id="display" checked>
-            <label for="display">Display style</label>
-        </div>
-        <div class="right">
-            <input type="button" value="Render TeX" id="render" />
-        </div>
-        <br clear="all" />
-        <div id="output"></div>
+    <label for="input"></label><textarea id="input" rows="15" cols="10"></textarea>
+    <br/>
+    <div class="left">
+        <input type="checkbox" id="display" checked>
+        <label for="display">Display style</label>
     </div>
-
+    <div class="right">
+        <input type="button" value="Render TeX" id="render"/>
+    </div>
+    <div id="output"></div>
+</div>
+When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 </body>
 
 </html>

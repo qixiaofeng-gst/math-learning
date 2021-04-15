@@ -7,12 +7,25 @@
     <meta name="viewport" content="width=device-width">
     <title>MathJax v2.7.7 with interactive TeX input</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script id="MathJax-script"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
     <script>
         (() => {
+            // https://docs.mathjax.org/en/v2.7-latest/options/preprocessors/tex2jax.html
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                }
+            })
+            // Check https://docs.mathjax.org/en/v2.7-latest/advanced/typeset.html
             window.onload = () => {
                 const localKey = '__SAVED_TEX__'
+                let output = undefined
+                MathJax.Hub.Queue(() => {
+                    output = MathJax.Hub.getAllJax('output')[0]
+                })
                 const texInput = document.getElementById("input")
                 const display = document.getElementById("display")
                 const button = document.getElementById("render")
@@ -26,21 +39,8 @@
                         return
                     }
                     localStorage.setItem(localKey, input)
-                    //
-                    //  Disable the display and render buttons until MathJax is done
-                    //;
                     button.disabled = display.disabled = true
-                    //
-                    //  Clear the old output
-                    //
-                    const output = document.getElementById('output')
-                    // TODO Check https://docs.mathjax.org/en/v2.7-latest/api/index.html
-                    console.log(MathJax)
-                    // const html = MathJax.tex2svg('\\sqrt{x^2+1}', {});
-                    const html = '===';
-                    output.innerHTML = ''
-                    output.appendChild(html);
-
+                    MathJax.Hub.Queue(["Text", output, input])
                     button.disabled = display.disabled = false
                 }
 
@@ -79,32 +79,20 @@
         #output > pre {
             margin-left: 5px;
         }
-
-        .left {
-            float: left;
-        }
-
-        .right {
-            float: right;
-        }
     </style>
 </head>
 
 <body>
 <div id="frame">
-
-    <h1>MathJax v3: TeX to SVG</h1>
-
+    <h1>MathJax v2.7.7: TeX to SVG</h1>
     <label for="input"></label><textarea id="input" rows="15" cols="10"></textarea>
     <br/>
-    <div class="left">
+    <div>
         <input type="checkbox" id="display" checked>
         <label for="display">Display style</label>
-    </div>
-    <div class="right">
         <input type="button" value="Render TeX" id="render"/>
     </div>
-    <div id="output"></div>
+    <div id="output">$${}$$</div>
 </div>
 When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$

@@ -13,11 +13,29 @@
     <script>
         (() => {
             // https://docs.mathjax.org/en/v2.7-latest/options/preprocessors/tex2jax.html
+            MathJax.Hub.Register.StartupHook("End Jax", () => MathJax.Hub.setRenderer('SVG'))
             MathJax.Hub.Config({
+                jax: [
+                    "input/TeX",
+                    "output/SVG",
+                    "output/PreviewHTML",
+                ],
+                extensions: [
+                    "tex2jax.js", "MathMenu.js", "MathZoom.js", "fast-preview.js",
+                    "AssistiveMML.js", "a11y/accessibility-menu.js",
+                ],
+                TeX: {
+                    extensions: [
+                        "AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"
+                    ]
+                },
+                SVG: {
+                    scale: 100,
+                },
                 tex2jax: {
                     inlineMath: [["$", "$"], ["\\(", "\\)"]],
                     displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                }
+                },
             })
             // Check https://docs.mathjax.org/en/v2.7-latest/advanced/typeset.html
             window.onload = () => {
@@ -31,9 +49,6 @@
                 const button = document.getElementById("render")
                 const savedTex = localStorage.getItem(localKey)
                 const convert = () => {
-                    //
-                    //  Get the TeX input
-                    //
                     const input = texInput.value.trim()
                     if (input.length === 0) {
                         return
